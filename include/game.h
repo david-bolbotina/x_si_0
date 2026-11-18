@@ -14,6 +14,8 @@ typedef enum {
 // initializeaza celulele cu spatiu liber
 void init_board(char board[BOARD_SIZE][BOARD_SIZE]);
 
+
+
 // 1 - mutare valida ; 0 altfel
 int make_move(
     char board[BOARD_SIZE][BOARD_SIZE],

@@ -8,6 +8,7 @@ void init_board(char board[BOARD_SIZE][BOARD_SIZE]){
         }
 }
 
+
 int make_move(
     char board[BOARD_SIZE][BOARD_SIZE],
     int row,
@@ -18,9 +19,11 @@ int make_move(
         (col >= 0 && col < BOARD_SIZE) &&
         (symbol == 'X' || symbol == 'O') &&
         (board[row][col] == ' '))
+        {
+            board[row][col] = symbol;
             return 1;
-
-        return 0;
+        }
+    return 0;
 }
 
 char check_winner(char board[BOARD_SIZE][BOARD_SIZE]){
@@ -35,12 +38,14 @@ char check_winner(char board[BOARD_SIZE][BOARD_SIZE]){
     }
     //coloane
     for(int i = 0; i < BOARD_SIZE; i++){
-        for(int j = 1; j < BOARD_SIZE - 1; j++){
-            if(board[j][i] != ' ')
-                if(board[j][i] == board[j][i-1] && board[j][i] == board[j][i+1]){
-                    return board[i][j];
+        if(board[0][i] != ' '){
+            for(int j = 0; j < BOARD_SIZE-1; j++){
+                    if(board[j][i] != board[j+1][i]){
+                        break;
+                    }
+                    return board[0][i];
                 }
-        }
+            }
     }
     //diagonale
     if(board[1][1] == board[0][0] && board[1][1] == board[2][2]){
